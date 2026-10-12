@@ -81,6 +81,17 @@ ul { list-style: none; margin: 0; padding: 0; }
     radial-gradient(calc(2798.0103037839763 * var(--u)) calc(6300 * var(--u)) at calc(50% + calc(-2.0399999999999636 * var(--u))) calc(100% + calc(5169.24 * var(--u))), #3a4297 82.080%, #394299 82.191%, #3a429a 82.302%, #3a439c 82.413%, #3b439e 82.524%, #3b429f 82.636%, #3b42a1 82.747%, #3c42a3 82.858%, #3d43a5 82.969%, #3d43a6 83.080%, #3e43a8 83.191%, #3f43aa 83.302%, #4043ac 83.413%, #4044ae 83.524%, #4144b0 83.636%, #4244b3 83.747%, #4344b5 83.858%, #4445b8 83.969%, #4545ba 84.080%, #4645bc 84.191%, #4745be 84.302%, #4845c1 84.413%, #4846c3 84.524%, #4946c4 84.636%, #4945c5 84.747%, #4945c6 84.858%, #4945c6 84.969%, #4945c5 85.080%, #4844c3 85.191%, #4742c0 85.302%, #4540bb 85.413%, #433eb5 85.524%, #403bad 85.636%, #3e38a4 85.747%, #3b359b 85.858%, #383291 85.969%, #352f88 86.080%, #322c80 86.191%, #302a78 86.302%, #2e2871 86.413%, #2c276c 86.524%, #2b2667 86.636%, #2a2563 86.747%, #292460 86.858%, #27235d 86.969%, #26225a 87.080%, #262157 87.191%, #252155 87.302%, #242052 87.413%, #232050 87.524%, #231f4e 87.636%, #221f4c 87.747%, #211e4a 87.858%, #211e48 87.969%, #201d46 88.080%, #1f1c44 88.191%, #1e1c42 88.302%, #1e1c3f 88.413%, #1e1b3e 88.524%, #1d1b3b 88.636%, #1c1a3a 88.747%, #1b1936 89.032%, #1a1832 89.318%, #19172f 89.604%, #18162c 89.890%, #171629 90.175%, #161526 90.461%, #151422 90.747%, #141320 91.032%, #14131d 91.318%, #13121c 91.604%, #13121a 91.890%, #121219 92.175%, #111117 92.461%, #111116 92.747%, #111015 93.032%, #101014 93.318%, #101014 93.604%, #100f13 93.890%, #101012 94.175%, #100f12 94.461%, #100f12 94.747%, #100f12 95.032%, #100f12 95.318%, #0f0f12 95.604%, #0f0f12 95.890%, #0f0f12 96.175%, #0f0f12 96.461%, #0f0f12 96.747%, #0f0f11 97.032%, #0f0f12 97.318%, #0f0f12 97.604%, #100f12 97.890%, #100f12 98.175%, #101012 98.218%, #0f0f11 100%);
   pointer-events: none;
 }
+/* Animated glow: a looping video rendered from the gradient above and served
+   from Higgsfield. It is sized to the 1920 x 1080 capture of .glow, so it sits
+   exactly on top of the static gradient, which stays underneath as the
+   fallback and shows through the feathered top edge. */
+.glow-video {
+  position: absolute; z-index: -2; left: 50%; bottom: 0; transform: translateX(-50%);
+  width: calc(1564.44 * var(--u)); min-width: 100%; aspect-ratio: 16 / 9;
+  object-fit: cover; object-position: 50% 100%; pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 24%); mask-image: linear-gradient(180deg, transparent 0%, #000 24%);
+}
+@media (prefers-reduced-motion: reduce) { .glow-video { display: none; } }
 .wordmark {
   position: absolute; z-index: -1; bottom: 0; left: calc(50% - calc(1168 * var(--u)));
   width: calc(2800 * var(--u)); height: calc(338 * var(--u)); pointer-events: none;
@@ -221,6 +232,7 @@ ul { list-style: none; margin: 0; padding: 0; }
   .page { height: 100vh; height: 100dvh; min-height: 0; overflow: hidden; justify-content: flex-start; }
   .glow { height: calc(1024 * var(--g));
     background: radial-gradient(calc(2798.0103037839763 * var(--g)) calc(6300 * var(--g)) at calc(50% + -2.0399999999999636 * var(--g)) calc(100% + 5169.24 * var(--g)), #3a4297 82.080%, #394299 82.191%, #3a429a 82.302%, #3a439c 82.413%, #3b439e 82.524%, #3b429f 82.636%, #3b42a1 82.747%, #3c42a3 82.858%, #3d43a5 82.969%, #3d43a6 83.080%, #3e43a8 83.191%, #3f43aa 83.302%, #4043ac 83.413%, #4044ae 83.524%, #4144b0 83.636%, #4244b3 83.747%, #4344b5 83.858%, #4445b8 83.969%, #4545ba 84.080%, #4645bc 84.191%, #4745be 84.302%, #4845c1 84.413%, #4846c3 84.524%, #4946c4 84.636%, #4945c5 84.747%, #4945c6 84.858%, #4945c6 84.969%, #4945c5 85.080%, #4844c3 85.191%, #4742c0 85.302%, #4540bb 85.413%, #433eb5 85.524%, #403bad 85.636%, #3e38a4 85.747%, #3b359b 85.858%, #383291 85.969%, #352f88 86.080%, #322c80 86.191%, #302a78 86.302%, #2e2871 86.413%, #2c276c 86.524%, #2b2667 86.636%, #2a2563 86.747%, #292460 86.858%, #27235d 86.969%, #26225a 87.080%, #262157 87.191%, #252155 87.302%, #242052 87.413%, #232050 87.524%, #231f4e 87.636%, #221f4c 87.747%, #211e4a 87.858%, #211e48 87.969%, #201d46 88.080%, #1f1c44 88.191%, #1e1c42 88.302%, #1e1c3f 88.413%, #1e1b3e 88.524%, #1d1b3b 88.636%, #1c1a3a 88.747%, #1b1936 89.032%, #1a1832 89.318%, #19172f 89.604%, #18162c 89.890%, #171629 90.175%, #161526 90.461%, #151422 90.747%, #141320 91.032%, #14131d 91.318%, #13121c 91.604%, #13121a 91.890%, #121219 92.175%, #111117 92.461%, #111116 92.747%, #111015 93.032%, #101014 93.318%, #101014 93.604%, #100f13 93.890%, #101012 94.175%, #100f12 94.461%, #100f12 94.747%, #100f12 95.032%, #100f12 95.318%, #0f0f12 95.604%, #0f0f12 95.890%, #0f0f12 96.175%, #0f0f12 96.461%, #0f0f12 96.747%, #0f0f11 97.032%, #0f0f12 97.318%, #0f0f12 97.604%, #100f12 97.890%, #100f12 98.175%, #101012 98.218%, #0f0f11 100%); }
+  .glow-video { width: calc(1564.44 * var(--g)); }
   .wordmark { left: calc(50% - 1168 * var(--g)); width: calc(2800 * var(--g)); height: calc(338 * var(--g)); }
   .frame { width: auto; margin: 0; }
 
@@ -324,6 +336,7 @@ ul { list-style: none; margin: 0; padding: 0; }
 <body>
 <div class="page">
   <div class="glow" aria-hidden="true"></div>
+  <video class="glow-video" src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20261012_113837_648393c5-6ed9-40fe-ad3b-b82a427fe12c.mp4" poster="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/0d37752c-bd6c-4e58-a2b3-e2082bbe6c23.png" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1"></video>
   <svg class="wordmark" viewBox="-400 686 2800 338" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false"><path fill-rule="evenodd" d="M-330 686H-258V982H-75V1050H-330Z M98.7 686H176.4L325.6 1050H242.6L209.7 965H60.6L27.3 1050H-57.1ZM135.5 773.3L186.5 905H84.0Z M366 686H439.5L590 927.6V686H660V1050H586.4L437 816.6V1050H366Z M741 686H816V1050H741Z M1007 686H1284V745H1179V1050H1105V745H1007Z M1332 686H1568V745H1404V822H1552V883H1404V982H1572V1050H1332Z M1924.4 732.6A182 182 0 1 0 1924.4 994.4L1873.0 941.2A108 108 0 1 1 1873.0 785.8Z M1980 686H2052V830H2198V686H2270V1050H2198V889H2052V1050H1980Z"/></svg>
 
   <header class="frame top">
